@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
-    "postinstall": "cd App | ng build --aot -prod | cd .."
+    "postinstall": "cd App | ng build --aot -prod --base-href=/App | cd .."
   },
   "dependencies": {
     "cors": "^2.8.5",
