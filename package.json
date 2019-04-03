@@ -11,7 +11,7 @@
     "start": "node index.js",
     "test": "node test.js",
     "build": "ng build",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build --aot -prod --base-href /App"
   },
   "dependencies": {
     "cors": "^2.8.5",
