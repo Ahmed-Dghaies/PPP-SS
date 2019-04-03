@@ -10,7 +10,6 @@
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
-    "build": "ng build",
     "postinstall": "cd App | ng build --aot -prod | cd .."
   },
   "dependencies": {
