@@ -9,8 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js",
-    "postinstall": "cd App | ng build --aot -prod --base-href=/App | cd .."
+    "test": "node test.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
