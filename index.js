@@ -11,6 +11,7 @@
   app.use(cors())
   app.use(bodyParser.json())
   app.use(express.static(__dirname + '/dist/App'));
+
   
   app.get('/', function(req, res) {
       res.send('Hello from server')
@@ -18,6 +19,13 @@
   
   
   app.use('/api',api)
+
+  app.get('/*', function(req,res) {
+    
+    res.sendFile(path.join(__dirname+'/dist/<name-of-app>/index.html'));
+    });
+
+    
   app.listen (PORT, function(){
       console.log('Server running at localhost: '+ PORT)
   })
