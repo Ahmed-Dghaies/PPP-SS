@@ -9,9 +9,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "build": "ng build",
+    "postinstall": "ng build --aot -prod"
   },
-  "postinstall": "ng build --aot -prod",
   "dependencies": {
     "cors": "^2.8.5",
     "ejs": "^2.5.6",
