@@ -30,7 +30,7 @@ router.post('/add', verifyToken, (req, res) => {
 });
 
 // delete a client
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', verifyToken, (req, res) => {
 
     let id = req.params.id;
 
@@ -66,7 +66,7 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 // get all clients
-router.get('/list', (req, res) => {
+router.get('/list', verifyToken, (req, res) => {
 
     ClientModel.find().select('-__v').exec()
     .then(clients => {
@@ -82,7 +82,7 @@ router.get('/list', (req, res) => {
 });
 
 // get clients by state 
-router.get('/list/byState', (req, res) => {
+router.get('/list/byState', verifyToken, (req, res) => {
 
     let state = req.query.state.toLowerCase();
 
@@ -102,7 +102,7 @@ router.get('/list/byState', (req, res) => {
 
 
 // get clients by region
-router.get('/list/byRegion', (req, res) => {
+router.get('/list/byRegion', verifyToken, (req, res) => {
 
     let region = req.query.region.toLowerCase();
 
@@ -120,7 +120,7 @@ router.get('/list/byRegion', (req, res) => {
 });
 
 // update client
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', verifyToken, (req, res) => {
 
     let id = req.params.id;
     let client = req.body.client;
