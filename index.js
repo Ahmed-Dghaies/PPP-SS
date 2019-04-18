@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const db = "mongodb+srv://Manager:22b7284ab75c8861dfcee4bbf3918848@ppp-ss-authentication-nqw72.mongodb.net/PPP-SS-Auth?retryWrites=true"
 const api = require('./routes/api')
 const clientRouter = require('./routes/client'); 
+const cardTypeRouter = require('./routes/CartBonType')
 const app = express()
 
 // setting server port 
@@ -30,12 +31,14 @@ app.get('/', function (req, res) {
     res.send('Hello from server')
 })
 
-
+// Authentication router
 app.use('/api', api);
-
 
 // client router
 app.use('/client', clientRouter);
+
+// card Type router
+app.use('/cardType', cardTypeRouter)
 
 
 app.listen(PORT, function () {
