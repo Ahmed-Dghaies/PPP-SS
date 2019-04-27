@@ -5,9 +5,12 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const db = "mongodb+srv://Manager:22b7284ab75c8861dfcee4bbf3918848@ppp-ss-authentication-nqw72.mongodb.net/PPP-SS-Auth?retryWrites=true"
 const api = require('./routes/api')
-const clientRouter = require('./routes/client'); 
-const cardTypeRouter = require('./routes/CartBonType')
-const app = express()
+const clientRouter = require('./routes/client');
+const cardTypeRouter = require('./routes/CartBonType');
+const sessionRouter = require('./routes/session');
+const app = express();
+const cron = require('node-cron');
+const createSession = require('./middleware/session');
 
 // setting server port 
 const PORT = process.env.PORT || 5000
@@ -17,7 +20,7 @@ app.use(bodyParser.json())
 
 
 // connect to database
-mongoose.connect(db ,{ useNewUrlParser: true }, err => {
+mongoose.connect(db, { useNewUrlParser: true }, err => {
     if (err) {
         console.error('error: ' + err)
     }
@@ -34,12 +37,38 @@ app.get('/', function (req, res) {
 // Authentication router
 app.use('/api', api);
 
+// Session Router
+app.use('/session', sessionRouter);
+
 // client router
 app.use('/client', clientRouter);
 
 // card Type router
 app.use('/cardType', cardTypeRouter)
 
+cron.schedule('37 23 * * *', () => {
+    createSession(1);
+    console.log('here 1')
+}, {
+        scheduled: true,
+        timezone: 'Africa/Algiers'
+    });
+
+cron.schedule('38 23 * * *', () => {
+    createSession(2);
+    console.log('here 2')
+}, {
+        scheduled: true,
+        timezone: 'Africa/Algiers'
+    });
+
+cron.schedule('20 19 * * *', () => {
+    createSession(3);
+    console.log('here 3')
+}, {
+        scheduled: true,
+        timezone: 'Africa/Algiers'
+    });
 
 app.listen(PORT, function () {
     console.log('Server running at localhost: ' + PORT)
