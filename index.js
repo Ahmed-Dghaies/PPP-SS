@@ -46,7 +46,7 @@ app.use('/client', clientRouter);
 // card Type router
 app.use('/cardType', cardTypeRouter)
 
-cron.schedule('37 23 * * *', () => {
+cron.schedule('0 6 * * *', () => {
     createSession(1);
     console.log('here 1')
 }, {
@@ -54,7 +54,7 @@ cron.schedule('37 23 * * *', () => {
         timezone: 'Africa/Algiers'
     });
 
-cron.schedule('38 23 * * *', () => {
+cron.schedule('0 14 * * *', () => {
     createSession(2);
     console.log('here 2')
 }, {
@@ -62,7 +62,7 @@ cron.schedule('38 23 * * *', () => {
         timezone: 'Africa/Algiers'
     });
 
-cron.schedule('20 19 * * *', () => {
+cron.schedule('0 22 * * *', () => {
     createSession(3);
     console.log('here 3')
 }, {
