@@ -1,4 +1,3 @@
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -11,6 +10,7 @@ const sessionRouter = require('./routes/session');
 const app = express();
 const cron = require('node-cron');
 const createSession = require('./middleware/session');
+const citerneRouter = require('./routes/citerne');
 
 // setting server port 
 const PORT = process.env.PORT || 5000
@@ -45,6 +45,9 @@ app.use('/client', clientRouter);
 
 // card Type router
 app.use('/cardType', cardTypeRouter)
+
+// citerne router
+app.use('/citerne',citerneRouter)
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
