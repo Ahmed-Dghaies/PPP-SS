@@ -1,6 +1,6 @@
 const express = require('express');
 const verifyToken = require('../middleware/check-auth');
-const CiterneModel = require('../models/Citerne');
+const CiterneModel = require('../models/citerne');
 
 // setting router variable
 const router = express.Router();
