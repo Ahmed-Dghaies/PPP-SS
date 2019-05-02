@@ -1,4 +1,5 @@
 const SessionModel = require('../models/Session');
+const RecetteModel = require('../models/Recette');
 
 
 const createSession = (number) => {
@@ -13,6 +14,8 @@ const createSession = (number) => {
         });
         var sessionModel = new SessionModel({ date: date, poste: poste, description: description, state: 'Open' });
         sessionModel.save();
+        var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
+        recetteModel.save();
     }
     else if (number === 2) {
         var poste = 'P2';
@@ -23,6 +26,8 @@ const createSession = (number) => {
         });
         var sessionModel = new SessionModel({ date: date, poste: poste, description: description, state: 'Open' });
         sessionModel.save();
+        var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
+        recetteModel.save();
     }
     else if (number === 3) {
         var poste = 'P3';
@@ -33,6 +38,8 @@ const createSession = (number) => {
         });
         var sessionModel = new SessionModel({ date: date, poste: poste, description: description, state: 'Open' });
         sessionModel.save();
+        var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
+        recetteModel.save();
     }
 }
 
