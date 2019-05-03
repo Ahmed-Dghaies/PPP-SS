@@ -11,19 +11,20 @@ const getDatePoste = () => {
     var datetime = new Date();
     var date = datetime.toISOString().slice(0, 10);
     var hour = datetime.getHours();
-    datetime.setDate(datetime.getDate() - 1);
-    var yesterday = datetime.toISOString().slice(0, 10);
+    dd = new Date(datetime.setDate(datetime.getDate() - 1))
+    var yesterday = dd.toISOString().slice(0, 10);
     var poste = '';
     if ((hour >= 6) && (hour < 14)) { poste = 'P1'; }
     else if ((hour >= 14) && (hour < 22)) { poste = 'P2'; }
-    else if ((hour == 22) || (hour == 23) || ((hour >= 0) && (hour < 6))) { poste = 'P3'; date = yesterday; }
+    else if ((hour == 22) || (hour == 23)) { poste = 'P3'; }
+    else if ((hour >= 0) && (hour < 6)) { poste = 'P3'; date = yesterday; }
     return [date, poste];
 }
 
 router.post('/addReleveIndex', verifyToken, (req, res) => {
     let index = req.body;
     let quantite = index.arrive - index.depart;
-    let prix = 15;
+    let prix = index.prix;
     var PD = getDatePoste();
 
     recetteModel.findOne({ date: PD[0], poste: PD[1] }).exec()
@@ -93,7 +94,6 @@ router.delete('/deleteReleveIndex/:id', verifyToken, (req, res) => {
 
 // get all types
 router.get('/listReleveIndex', verifyToken, (req, res) => {
-
     var PD = getDatePoste()
 
     recetteModel.findOne({ date: PD[0], poste: PD[1] }).exec()
@@ -132,7 +132,7 @@ router.put('/updateReleveIndex/:id', verifyToken, function (req, res) {
     let id = req.params.id;
     let new_releveIndex = req.body;
     let quantite = new_releveIndex.arrive - new_releveIndex.depart;
-    let prix = 15;
+    let prix = new_releveIndex.prix;
     var PD = getDatePoste()
     recetteModel.findOne({ date: PD[0], poste: PD[1] }).exec()
         .then(recette => {

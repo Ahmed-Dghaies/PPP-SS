@@ -1,20 +1,20 @@
 const express = require('express');
 const verifyToken = require('../middleware/check-auth');
-const cardTypeModel = require('../models/CarteBonType');
+const distributeurModel = require('../models/Distributeur');
 
 // setting router variable
 const router = express.Router();
 
 
-// add new Type
+// add new distributeur
 router.post('/add', verifyToken, (req, res) => {
 
-    let cardType = req.body;
-    let new_type = new cardTypeModel(cardType);
+    let distributeur = req.body;
+    let new_distributeur = new distributeurModel(distributeur);
 
-    new_type.save().then(result => {
+    new_distributeur.save().then(result => {
         res.status(201).json({
-            cardType: result
+            distributeur: result
         });
     })
         .catch(err => {
@@ -31,19 +31,19 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
 
     let id = req.params.id;
 
-    cardTypeModel.findOne({ _id: id }).exec()
-        .then(cardType => {
-            if (!cardType) {
+    distributeurModel.findOne({ _id: id }).exec()
+        .then(distributeur => {
+            if (!distributeur) {
                 res.status(404).json({
-                    message: "type carte Introuvable!"
+                    message: "Distributeur Introuvable!"
                 });
             }
             else {
 
-                cardTypeModel.deleteMany({ _id: id }).exec()
+                distributeurModel.deleteMany({ _id: id }).exec()
                     .then(result => {
                         res.status(200).json({
-                            message: 'type carte supprimé avec succés',
+                            message: 'Distributeur supprimé avec succés',
                             count: result.deletedCount
                         });
                     })
@@ -65,12 +65,12 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
 // get all types
 router.get('/list', verifyToken, (req, res) => {
 
-    cardTypeModel.find(function (err, cardTypes){
+    distributeurModel.find(function (err, distributeurs){
         if(err){
           console.log(err);
         }
         else {
-          res.status(200).json(cardTypes);
+          res.status(200).json(distributeurs);
         }
       })
         .catch(err => {
@@ -83,8 +83,8 @@ router.get('/list', verifyToken, (req, res) => {
 // Defined edit route
 router.get('/edit/:id', verifyToken, function (req, res) {
     let id = req.params.id;
-    cardTypeModel.findById(id, function (err, cardType) {
-        res.json(cardType);
+    distributeurModel.findById(id, function (err, distributeur) {
+        res.json(distributeur);
     })
         .catch(err => {
             res.status(500).json({
@@ -96,17 +96,17 @@ router.get('/edit/:id', verifyToken, function (req, res) {
 //  Defined update route
 router.put('/update/:id', verifyToken, function (req, res) {
     let id = req.params.id;
-    let cardType = req.body;
-    cardTypeModel.findOne({_id: id}).exec()
+    let distributeur = req.body;
+    distributeurModel.findOne({_id: id}).exec()
     .then(doc => {
         if (!doc)
         res.status(404).json({
             message: 'Could not load Document'
         });
         else {
-            cardTypeModel.updateOne({_id: id}, cardType).exec()
+            distributeurModel.updateOne({_id: id}, distributeur).exec()
             .then(result => {
-                cardType = {_id: id, ...cardType}
+                distributeur = {_id: id, ...distributeur}
                 res.status(200).json('Update Complete');
             })
                 .catch(err => {

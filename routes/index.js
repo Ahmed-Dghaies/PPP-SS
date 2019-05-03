@@ -93,13 +93,26 @@ router.get('/edit/:id', verifyToken, function (req, res) {
         });
 });
 
+router.get('/getCarburant/:reference', verifyToken, function (req, res) {
+    let reference = req.params.reference;
+    indexModel.findOne({reference: reference},function(err, index) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(index);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
+
 //  Defined update route
 router.put('/update/:id', verifyToken, function (req, res) {
-    console.log('here')
     let id = req.params.id;
     let index = req.body;
-    console.log(id)
-    console.log(index)
     indexModel.findOne({_id: id}).exec()
     .then(doc => {
         if (!doc)
