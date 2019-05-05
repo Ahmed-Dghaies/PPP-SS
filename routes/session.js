@@ -22,7 +22,7 @@ router.get('/get', verifyToken, (req, res) => {
 
 // add pompiste to Session
 router.put('/add-pompistes', verifyToken, (req ,res) => {
-    let id_session = req.body.id_session;
+    let id_session = req.body.idSession;
     let pompistes = req.body.pompistes;
 
     SessionModel.findOne({ _id: id_session}).lean().exec()
@@ -69,8 +69,8 @@ router.put('/add-pompistes', verifyToken, (req ,res) => {
 // delete pompiste form Session
 router.put('/delete-pompiste', verifyToken, (req, res) => {
 
-    let id_session = req.body.id_session;
-    let id_pompiste = req.body.id_pompiste;
+    let id_session = req.body.idSession;
+    let id_pompiste = req.body.idPompiste;
 
     SessionModel.findOne({
             _id: id_session
