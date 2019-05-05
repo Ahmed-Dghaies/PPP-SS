@@ -12,7 +12,13 @@ const createSession = (number) => {
             if (err) { throw err; }
             if (res) { console.log('updated'); }
         });
-        var sessionModel = new SessionModel({ date: date, poste: poste, description: description, state: 'Open' });
+        var sessionModel = new SessionModel({
+            date: date,
+            poste: poste,
+            description: description,
+            state: 'Open',
+            personnes: []
+        });
         sessionModel.save();
         var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
         recetteModel.save();
@@ -24,7 +30,13 @@ const createSession = (number) => {
             if (err) { throw err; }
             if (res) { console.log('updated'); }
         });
-        var sessionModel = new SessionModel({ date: date, poste: poste, description: description, state: 'Open' });
+        var sessionModel = new SessionModel({
+            date: date,
+            poste: poste,
+            description: description,
+            state: 'Open',
+            personnes: []
+        });
         sessionModel.save();
         var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
         recetteModel.save();
@@ -36,7 +48,13 @@ const createSession = (number) => {
             if (err) { throw err; }
             if (res) { console.log('updated'); }
         });
-        var sessionModel = new SessionModel({ date: date, poste: poste, description: description, state: 'Open' });
+        var sessionModel = new SessionModel({
+            date: date,
+            poste: poste,
+            description: description,
+            state: 'Open',
+            personnes: []
+        });
         sessionModel.save();
         var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
         recetteModel.save();
