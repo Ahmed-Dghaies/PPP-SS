@@ -41,7 +41,8 @@ router.post('/addReleveIndex', verifyToken, (req, res) => {
                     arrive: index.arrive,
                     quantite: quantite,
                     prix: prix,
-                    prevue: quantite * prix
+                    prevue: quantite * prix,
+                    pompiste: index.pompiste
                 };
                 recette.rIndex.push(indexVM);
                 recetteModel.updateOne({ _id: recette._id }, recette).exec()
@@ -148,7 +149,8 @@ router.put('/updateReleveIndex/:id', verifyToken, function (req, res) {
                     arrive: new_releveIndex.arrive,
                     quantite: quantite,
                     prix: prix,
-                    prevue: quantite * prix
+                    prevue: quantite * prix,
+                    pompiste: new_releveIndex.pompiste
                 };
                 recette.rIndex[updateIndex] = releveIndex;
                 recetteModel.updateOne({ _id: recette._id }, recette).exec()

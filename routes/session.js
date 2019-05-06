@@ -114,4 +114,30 @@ router.put('/delete-pompiste', verifyToken, (req, res) => {
         });
 });
 
+
+// get Pompiste for the current session
+router.get('/get-session-pompiste/:id', (req, res) => {
+
+    let id = req.params.id;
+
+    SessionModel.findOne({_id: id}).exec()
+    .then(doc => {
+        if(!doc){
+            res.status(404).json({
+                message: 'Session Introuvable'
+            });
+        }
+        else{
+            res.status(200).json({
+                pompistes: doc.personnes
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
+
 module.exports = router;

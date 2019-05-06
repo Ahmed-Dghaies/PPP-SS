@@ -8,6 +8,10 @@ const indexVMSchema = mongoose.Schema({
     quantite: {type: Number},
     prix: {type: Number},
     prevue: {type: Number},
+    pompiste: {
+        _id: { type: mongoose.Schema.Types.ObjectId },
+        nom: { type: String }
+    }
 });
 
 module.exports = indexVMSchema;
