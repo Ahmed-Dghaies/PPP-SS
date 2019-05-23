@@ -11,7 +11,6 @@ router.post('/add', (req, res) => {
     let citerne = req.body.citerne;
 
     let new_citerne = new CiterneModel(citerne);
-    new_citerne.identifiant = new_citerne.identifiant.toLowerCase();
 
     new_citerne.save().then(result => {
             res.status(201).json({
@@ -43,17 +42,37 @@ router.get('/list',  (req, res) => {
         });
 });
 
-// get citerne by type 
+// get citerne by Carburant type 
 router.get('/list/byType', (req, res) => {
 
-    let type = req.query.type.toLowerCase();
+    let carburant = req.query.carburant;
 
     CiterneModel.find({
-            type
+            carburant
         }).exec()
         .then(citernes => {
             res.status(200).json({
                 citernes
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+        })
+});
+
+// find citerne by Code 
+router.get('/list/byCode', verifyToken,(req, res) => {
+
+    let code = req.query.code;
+
+    CiterneModel.find({
+            code
+        }).exec()
+        .then(citerne => {
+            res.status(200).json({
+                citerne
             });
         })
         .catch(err => {
@@ -104,13 +123,10 @@ router.delete('/delete/:id', (req, res) => {
 
 
 // Update citerne
-router.put('/update/:id',  (req, res) => {
+router.put('/update/:id', (req, res) => {
 
     let id = req.params.id;
     let citerne = req.body.citerne;
-
-    citerne.identifiant = citerne.identifiant.toLowerCase();
-    citerne.type = citerne.type.toLowerCase();
 
     CiterneModel.findOne({
             _id: id

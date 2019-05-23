@@ -14,9 +14,10 @@ const citerneRouter = require('./routes/citerne');
 const recetteRouter = require('./routes/Recette');
 const indexRouter = require('./routes/index');
 const distributeurRouter = require('./routes/distributeur');
-const carburantRouter = require('./routes/carburant');
+const prixcarburantRouter = require('./routes/PrixCarburant');
 const pompisteRouter = require('./routes/pompiste');
 const EventRouter = require('./routes/event');
+const carburantRouter = require('./routes/carburant');
 
 // setting server port 
 const PORT = process.env.PORT || 5000
@@ -64,14 +65,17 @@ app.use('/index', indexRouter)
 // distributeur router
 app.use('/distributeur', distributeurRouter)
 
-// carburant router
-app.use('/carburant', carburantRouter)
+// PrixCarburant router
+app.use('/prixcarburant', prixcarburantRouter)
 
 // pompiste router
 app.use('/pompiste', pompisteRouter);
 
 // event router
 app.use('/event', EventRouter);
+
+// Carburant router
+app.use('/carburant', carburantRouter);
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
