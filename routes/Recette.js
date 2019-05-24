@@ -115,6 +115,57 @@ router.get('/listReleveIndex', verifyToken, (req, res) => {
         });
 });
 
+// get total revenue recettes by month
+router.get('/totalRevenue', verifyToken, (req, res) => {
+    
+    let month = parseInt(req.query.month);
+
+    recetteModel.find().lean().exec()
+        .then(recettes => {
+            let total = 0;
+            recettesByMonth = recettes.filter(recette => parseInt(recette.date.slice(5, 7)) === month);
+            recettesByMonth.forEach(recette => {
+                recette.rIndex.forEach(r => {
+                    total += r.prevue;
+                })
+            });
+            res.status(200).json({
+                total
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+        });
+});
+
+// get quantité carburant recettes by month
+router.get('/quantiteCarburant', verifyToken, (req, res) => {
+
+    let month = parseInt(req.query.month);
+
+    recetteModel.find().lean().exec()
+        .then(recettes => {
+            let quantite = 0;
+            recettesByMonth = recettes.filter(recette => parseInt(recette.date.slice(5, 7)) === month);
+            recettesByMonth.forEach(recette => {
+                recette.rIndex.forEach(r => {
+                    quantite += r.quantite;
+                })
+            });
+            res.status(200).json({
+                quantite
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+        });
+});
+
+
 // Defined edit route
 router.get('/editReleveIndex/:id', verifyToken, function (req, res) {
     let id = req.params.id;

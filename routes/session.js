@@ -116,11 +116,9 @@ router.put('/delete-pompiste', verifyToken, (req, res) => {
 
 
 // get Pompiste for the current session
-router.get('/get-session-pompiste/:id', (req, res) => {
+router.get('/get-session-pompiste/', (req, res) => {
 
-    let id = req.params.id;
-
-    SessionModel.findOne({_id: id}).exec()
+    SessionModel.findOne({state: 'Open'}).exec()
     .then(doc => {
         if(!doc){
             res.status(404).json({

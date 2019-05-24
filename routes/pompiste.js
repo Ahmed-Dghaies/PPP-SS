@@ -82,6 +82,22 @@ router.get('/list', verifyToken, (req, res) => {
         });
 });
 
+// get total pompistes
+router.get('/totalPompiste', verifyToken, (req, res) => {
+
+    PompisteModel.find().select('-__v').exec()
+        .then(pompistes => {
+            res.status(200).json({
+                total: pompistes.length
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+        });
+});
+
 // update pompiste
 router.put('/update/:id', verifyToken, (req, res) => {
 
