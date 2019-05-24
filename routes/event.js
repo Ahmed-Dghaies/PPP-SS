@@ -86,7 +86,6 @@ router.get('/list', verifyToken, (req, res) => {
 router.get('/list/byDate', verifyToken, (req, res) => {
 
     let date = req.query.date;
-    console.log(date);
 
     EventModel.find({
             date
