@@ -43,43 +43,55 @@ router.get('/list',  (req, res) => {
 });
 
 // get citerne by Carburant type 
-router.get('/list/byType', (req, res) => {
+router.get('/list/carburant/:carburant', (req, res) => {
 
-    let carburant = req.query.carburant;
+    let carburant = req.params.carburant;
 
-    CiterneModel.find({
-            carburant
-        }).exec()
-        .then(citernes => {
-            res.status(200).json({
-                citernes
-            });
-        })
-        .catch(err => {
-            res.status(500).json({
-                erreur: err
-            });
-        })
+    CiterneModel.find({carburant: carburant}).select('-__v').exec()
+    .then(citernes => {
+        res.status(200).json({
+            citernes
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
 });
 
-// find citerne by Code 
-router.get('/list/byCode', verifyToken,(req, res) => {
+// Find by Id
+router.get('/list/:id',  function (req, res) {
+    let id = req.params.id;
+    CiterneModel.findOne({_id: id},function(err, citerne) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(citerne);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
 
-    let code = req.query.code;
-
-    CiterneModel.find({
-            code
-        }).exec()
-        .then(citerne => {
-            res.status(200).json({
-                citerne
-            });
-        })
-        .catch(err => {
-            res.status(500).json({
-                erreur: err
-            });
-        })
+// Find by code 
+router.get('/list/getbycode/:code',  function (req, res) {
+    let code = req.params.code;
+    CiterneModel.findOne({code: code},function(err, citerne) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(citerne);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
 });
 
 // delete a citerne

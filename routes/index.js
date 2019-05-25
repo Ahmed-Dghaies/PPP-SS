@@ -109,6 +109,45 @@ router.get('/getCarburant/:reference', verifyToken, function (req, res) {
     });
 });
 
+// get indexes by citerne
+router.get('/list/indexbyciterne/:code', verifyToken, (req, res) => {
+
+    let code = req.params.code;
+    indexModel.find({citerne: code},function (err, indexs){
+        if(err){
+          console.log(err);
+        }
+        else {
+          res.status(200).json(indexs);
+        }
+      })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+        });
+});
+
+// get indexes by distributeur
+router.get('/list/indexbydistributeur/:code', verifyToken, (req, res) => {
+
+    let code = req.params.code;
+    indexModel.find({distributeur: code},function (err, indexs){
+        if(err){
+          console.log(err);
+        }
+        else {
+          res.status(200).json(indexs);
+        }
+      })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+        });
+});
+
+
 //  Defined update route
 router.put('/update/:id', verifyToken, function (req, res) {
     let id = req.params.id;

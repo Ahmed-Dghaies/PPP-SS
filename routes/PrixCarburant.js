@@ -143,9 +143,44 @@ router.put('/updateList', verifyToken, function (req, res) {
     }
 });
 
+// get carburants 
+router.get('/list/carburantbyprix/:carburant', (req, res) => {
+
+    let carburant = req.params.carburant;
+
+    PrixCarburantModel.find({carburant: carburant}).select('-__v').exec()
+    .then(prix => {
+        res.status(200).json({
+            prix
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
+
 router.get('/getPrix/:carburant', verifyToken, function (req, res) {
     let carburant = req.params.carburant;
     PrixCarburantModel.findOne({carburant: carburant, identifiantPrix: 'P1'},function(err, index) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(index);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
+
+//get PrixCarburant by name
+router.get('/list/:carburant', verifyToken, function (req, res) {
+    let carburant = req.params.carburant;
+    PrixCarburantModel.findOne({carburant: carburant},function(err, index) {
         if(err){
             console.log(err);
           }

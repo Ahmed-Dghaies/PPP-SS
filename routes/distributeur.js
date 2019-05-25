@@ -93,6 +93,40 @@ router.get('/edit/:id', verifyToken, function (req, res) {
         });
 });
 
+// get by Id
+router.get('/list/:id',  function (req, res) {
+    let id = req.params.id;
+    distributeurModel.findOne({_id: id},function(err, index) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(index);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
+
+// get by reference
+router.get('/list/getbyref/:ref',  function (req, res) {
+    let ref = req.params.ref;
+    distributeurModel.findOne({reference: ref},function(err, index) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(index);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
+
 //  Defined update route
 router.put('/update/:id', verifyToken, function (req, res) {
     let id = req.params.id;

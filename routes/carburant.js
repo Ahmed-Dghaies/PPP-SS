@@ -111,8 +111,25 @@ router.put('/update/:id', function (req, res) {
         });
 });
 
+// get by Id
+router.get('/list/:id',  function (req, res) {
+    let id = req.params.id;
+    CarburantModel.findOne({_id: id},function(err, index) {
+        if(err){
+            console.log(err);
+          }
+          else {
+            res.status(200).json(index);
+          }
+    }).catch(err => {
+        res.status(500).json({
+            erreur: err
+        });
+    });
+});
 
-router.get('/list/:ref', verifyToken, function (req, res) {
+// get by ref
+router.get('/list/getbyref/:ref',  function (req, res) {
     let ref = req.params.ref;
     CarburantModel.findOne({ref: ref},function(err, index) {
         if(err){
