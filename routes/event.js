@@ -1,6 +1,7 @@
 const express = require('express');
 const verifyToken = require('../middleware/check-auth');
 const EventModel = require('../models/Event');
+const path = require('path');
 
 // setting router variable
 const router = express.Router();
@@ -144,6 +145,15 @@ router.put('/update/:id', verifyToken, (req, res) => {
                 erreur: err
             });
         });
+});
+
+
+// get weather images
+router.get('/weather-img/:img', (req ,res ) => {
+
+    let img = req.params.img;
+
+    res.sendFile(path.join(__dirname, '..', 'images', img));
 });
 
 
