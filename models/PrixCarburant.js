@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const PrixCarburant = Schema({
     carburant: { type: String, required: true },
     prix: {type: Number, required: true},
-    identifiantPrix: {type: String}
+    identifiantPrix: {type: String},
+    date: {type: String}
 });
 
 
