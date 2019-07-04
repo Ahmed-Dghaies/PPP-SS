@@ -2,9 +2,17 @@ const express = require('express');
 const verifyToken = require('../middleware/check-auth');
 const SessionModel = require('../models/Session');
 const pompisteModel = require('../models/Pompiste');
+const SessionModel = require('../models/Session');
 
 // setting router variable
 const router = express.Router();
+
+router.put('/closeSession', verifyToken, (req, res) => {
+    SessionModel.updateOne({ state: 'Open' }, { $set: { state: 'Closed' } }, function (err, res) {
+        if (err) { throw err; }
+        if (res) { console.log('updated'); }
+    });
+});
 
 router.get('/get', verifyToken, (req, res) => {
 
