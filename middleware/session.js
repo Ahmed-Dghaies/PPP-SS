@@ -19,8 +19,11 @@ const createSession = (number) => {
             state: 'Open',
             personnes: []
         });
-        sessionModel.save();
-        var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
+        var returnedId
+        sessionModel.save(function (err, sessionModel) {
+            returnedId = sessionModel._id;
+        });
+        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: returnedId, rIndex: [] });
         recetteModel.save();
     }
     else if (number === 2) {
@@ -37,8 +40,11 @@ const createSession = (number) => {
             state: 'Open',
             personnes: []
         });
-        sessionModel.save();
-        var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
+        var returnedId
+        sessionModel.save(function (err, sessionModel) {
+            returnedId = sessionModel._id;
+        });
+        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: returnedId, rIndex: [] });
         recetteModel.save();
     }
     else if (number === 3) {
@@ -55,8 +61,11 @@ const createSession = (number) => {
             state: 'Open',
             personnes: []
         });
-        sessionModel.save();
-        var recetteModel = new RecetteModel({date: date, poste:poste,rIndex: []});
+        var returnedId
+        sessionModel.save(function (err, sessionModel) {
+            returnedId = sessionModel._id;
+        });
+        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: returnedId, rIndex: [] });
         recetteModel.save();
     }
 }

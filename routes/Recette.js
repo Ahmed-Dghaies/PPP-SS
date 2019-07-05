@@ -94,11 +94,9 @@ router.delete('/deleteReleveIndex/:id', verifyToken, (req, res) => {
 });
 
 // get all types
-router.get('/listReleveIndex/:time', verifyToken, (req, res) => {
-  let time = req.params.time;
-  const date = time.substr(0, 10);
-  const poste = time.substr(10, 2);
-    recetteModel.findOne({ date: date, poste: poste }).exec()
+router.get('/listReleveIndex/:sId', verifyToken, (req, res) => {
+  let sessionId = req.params.sId;
+    recetteModel.findOne({ sessionId: sessionId }).exec()
         .then(recette => {
             if (!recette) {
                 res.status(404).json({
