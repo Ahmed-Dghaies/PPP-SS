@@ -19,11 +19,8 @@ const createSession = (number) => {
             state: 'Open',
             personnes: []
         });
-        var returnedId
-        sessionModel.save(function (err, sessionModel) {
-            returnedId = sessionModel._id;
-        });
-        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: returnedId, rIndex: [] });
+        sessionModel.save();
+        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: sessionModel._id, rIndex: [] });
         recetteModel.save();
     }
     else if (number === 2) {
@@ -40,11 +37,8 @@ const createSession = (number) => {
             state: 'Open',
             personnes: []
         });
-        var returnedId
-        sessionModel.save(function (err, sessionModel) {
-            returnedId = sessionModel._id;
-        });
-        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: returnedId, rIndex: [] });
+        sessionModel.save();
+        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: sessionModel._id, rIndex: [] });
         recetteModel.save();
     }
     else if (number === 3) {
@@ -61,11 +55,8 @@ const createSession = (number) => {
             state: 'Open',
             personnes: []
         });
-        var returnedId
-        sessionModel.save(function (err, sessionModel) {
-            returnedId = sessionModel._id;
-        });
-        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: returnedId, rIndex: [] });
+        sessionModel.save();
+        var recetteModel = new RecetteModel({ date: date, poste: poste, sessionId: sessionModel._id, rIndex: [] });
         recetteModel.save();
     }
 }
