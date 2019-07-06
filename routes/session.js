@@ -152,44 +152,31 @@ router.get('/get-session-pompiste/', (req, res) => {
 });
 
 // Update Session
-router.put('/update/:id', (req, res) => {
-
+router.put('/update/:id', verifyToken, function (req, res) {
     let id = req.params.id;
-    let session = req.body.session;
-
-    SessionModel.findOne({
-            _id: id
-        }).exec()
-        .then(doc => {
-            if (!doc) {
-                res.status(404).json({
-                    message: 'Session Introuvable'
-                });
-            } else {
-                SessionModel.updateOne({
-                        _id: id
-                    }, session).exec()
-                    .then(result => {
-                        session = {
-                            _id: id,
-                            ...session
-                        }
-                        res.status(200).json({
-                            citerne
-                        });
-                    })
-                    .catch(err => {
+    let session = req.body;
+    sessionModel.findOne({_id: id}).exec()
+    .then(doc => {
+        if (!doc)
+        res.status(404).json({
+            message: 'Could not load Document'
+        });
+        else {
+            sessionModel.updateOne({_id: id}, session).exec()
+            .then(result => {
+                session = {_id: id, ...session}
+                res.status(200).json('Update Complete');
+            })
+                .catch(err => {
+                    if (res.status === 400)
+                        res.status(400).send("unable to update the database");
+                    else if (res.status === 500)
                         res.status(500).json({
                             erreur: err
                         });
-                    });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({
-                erreur: err
-            });
-        });
+                });
+        }
+    });
 });
 
 module.exports = router;
