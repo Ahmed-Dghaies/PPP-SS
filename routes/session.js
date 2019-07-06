@@ -164,7 +164,7 @@ router.put('/update/:id', verifyToken, function (req, res) {
         else {
             sessionModel.updateOne({_id: id}, session).exec()
             .then(result => {
-                session = {_id: id, ...session}
+                //session = {_id: id, ...session}
                 res.status(200).json('Update Complete');
             })
                 .catch(err => {
