@@ -20,9 +20,9 @@ router.put('/closeSession', verifyToken, (req, res) => {
 });
 
 // Update Session
-router.put('/update/:id', verifyToken, function (req, res) {
+router.put('/update/:id/:description', verifyToken, function (req, res) {
     let id = req.params.id;
-    let description = req.body;
+    let description = req.param.description;
     console.log(description);
     SessionModel.updateOne({ _id: id }, { $set: { description: description } }).then(result => {
         res.status(200).json({
