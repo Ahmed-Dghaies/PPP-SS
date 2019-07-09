@@ -96,6 +96,26 @@ router.put('/add-pompistes', verifyToken, (req, res) => {
         });
 });
 
+// Open new session
+router.post('/OpenNewSession', verifyToken, (req, res) => {
+
+    let session = req.body;
+    let newSession = new SessionModel(session);
+
+    newSession.save().then(result => {
+        res.status(201).json({
+            session: result
+        });
+    })
+        .catch(err => {
+            res.status(500).json({
+                erreur: err
+            });
+            console.log(err);
+        });
+
+});
+
 // delete pompiste form Session
 router.put('/delete-pompiste', verifyToken, (req, res) => {
 
