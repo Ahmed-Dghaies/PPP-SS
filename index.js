@@ -18,6 +18,7 @@ const prixcarburantRouter = require('./routes/PrixCarburant');
 const pompisteRouter = require('./routes/pompiste');
 const EventRouter = require('./routes/event');
 const carburantRouter = require('./routes/carburant');
+const carteBonRouter = require('./routes/recette-details/CardBon');
 
 // setting server port 
 const PORT = process.env.PORT || 5000
@@ -76,6 +77,9 @@ app.use('/event', EventRouter);
 
 // Carburant router
 app.use('/carburant', carburantRouter);
+
+//carte Bon router
+app.use('/carteBon', carteBonRouter);
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
