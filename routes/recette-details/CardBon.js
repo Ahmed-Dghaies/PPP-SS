@@ -1,6 +1,6 @@
 const express = require('express');
 const verifyToken = require('../../middleware/check-auth');
-const CarteBonModel = require('../models/carteBon');
+const CarteBonModel = require('../../models/carteBon');
 
 // setting router variable
 const router = express.Router();
