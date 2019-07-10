@@ -87,7 +87,7 @@ app.use('/carteBon', carteBonRouter);
 app.use('/bonValeur', bonValeurRouter);
 
 //Cheque router
-app.use('/cheque', cheque);
+app.use('/cheque', chequeRouter);
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
