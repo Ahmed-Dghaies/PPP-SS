@@ -1,5 +1,5 @@
 const express = require('express');
-const verifyToken = require('../middleware/check-auth');
+const verifyToken = require('../../middleware/check-auth');
 const CarteBonModel = require('../models/carteBon');
 
 // setting router variable
