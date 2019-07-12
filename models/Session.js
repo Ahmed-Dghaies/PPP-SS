@@ -9,7 +9,8 @@ const session = Schema({
     personnes: [{
         id_pompiste: { type: mongoose.Schema.Types.ObjectId },
         nom_pompiste: { type: String },
-        heures_pres: { type: Number }
+        heures_pres: { type: Number },
+        indexs: { type: [String] }
     }]
 });
 
