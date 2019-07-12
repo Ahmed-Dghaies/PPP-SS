@@ -26,7 +26,7 @@ router.post('/addReleveIndex', verifyToken, (req, res) => {
     let quantite = index.arrive - index.depart;
     let prix = index.prix;
     var PD = getDatePoste();
-
+    console.log(PD);
     recetteModel.findOne({ date: PD[0], poste: PD[1] }).exec()
         .then(recette => {
             if (!recette) {
