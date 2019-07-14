@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const carteBonType = Schema({
     cardCode: { type: String, required: true },
+    cardCarburant: { type: String, required: true },
     cardDescription: {type: String}
 });
 
