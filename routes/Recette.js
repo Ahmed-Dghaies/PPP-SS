@@ -21,6 +21,7 @@ const getDatePoste = () => {
     return [date, poste];
 }
 
+//add relevé index
 router.post('/addReleveIndex', verifyToken, (req, res) => {
     let index = req.body;
     let quantite = index.arrive - index.depart;
@@ -61,6 +62,49 @@ router.post('/addReleveIndex', verifyToken, (req, res) => {
 
 });
 
+//add multiple relevé index
+router.post('/addMultipleReleveIndex', verifyToken, (req, res) => {
+    let indexs = req.body;
+    var PD = getDatePoste();
+    console.log(PD);
+    recetteModel.findOne({ date: PD[0], poste: PD[1] }).exec()
+        .then(recette => {
+            if (!recette) {
+                res.status(404).json({
+                    message: "recette introuvable!"
+                });
+            }
+            else {
+                var i;
+                for (i = 0; i < indexs.length; i++) {
+                    indexVM = {
+                        reference: indexs[i].reference,
+                        depart: indexs[i].depart,
+                        arrive: indexs[i].arrive,
+                        quantite: indexs[i].arrive - indexs[i].depart,
+                        prix: indexs[i].prix,
+                        prevue: (indexs[i].arrive - indexs[i].depart) * indexs[i].prix,
+                        pompiste: indexs[i].pompiste
+                    };
+                    recette.rIndex.push(indexVM);
+                }
+                recetteModel.updateOne({ _id: recette._id }, recette).exec()
+                        .then(result => {
+                            if (!result) {
+                                res.status(404).json({
+                                    message: "ajout echoué"
+                                });
+                            }
+                            else {
+                                res.status(200).json(result);
+                            }
+                        });
+
+            }
+        });
+
+});
+
 // delete a Type
 router.delete('/deleteReleveIndex/:id', verifyToken, (req, res) => {
     let id = req.params.id;
@@ -95,7 +139,7 @@ router.delete('/deleteReleveIndex/:id', verifyToken, (req, res) => {
 
 // get all types
 router.get('/listReleveIndex/:sId', verifyToken, (req, res) => {
-  let sessionId = req.params.sId;
+    let sessionId = req.params.sId;
     recetteModel.findOne({ sessionId: sessionId }).exec()
         .then(recette => {
             if (!recette) {
@@ -116,7 +160,7 @@ router.get('/listReleveIndex/:sId', verifyToken, (req, res) => {
 
 // get total revenue recettes by month
 router.get('/totalRevenue', verifyToken, (req, res) => {
-    
+
     let month = parseInt(req.query.month);
 
     recetteModel.find().lean().exec()
