@@ -15,6 +15,7 @@ const getDatePoste = () => {
     var yesterday = dd.toISOString().slice(0, 10);
     var poste = '';
     console.log(hour);
+    console.log(date);
     if ((hour >= 6) && (hour < 14)) { poste = 'P1'; }
     else if ((hour >= 14) && (hour < 22)) { poste = 'P2'; }
     else if ((hour == 22) || (hour == 23)) { poste = 'P3'; }
