@@ -245,6 +245,7 @@ router.put('/updateReleveIndex/:id', verifyToken, function (req, res) {
                     prevue: quantite * prix,
                     pompiste: new_releveIndex.pompiste
                 };
+                console.log(releveIndex);
                 recette.rIndex[updateIndex] = releveIndex;
                 recetteModel.updateOne({ _id: recette._id }, recette).exec()
                     .then(result => {
