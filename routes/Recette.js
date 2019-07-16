@@ -242,7 +242,7 @@ router.put('/updateReleveIndex/:id', verifyToken, function (req, res) {
                     arrive: new_releveIndex.arrive,
                     quantite: quantite,
                     prix: prix,
-                    prevue: quantite * prix,
+                    prevue: (quantite * prix).toFixed(3),
                     pompiste: new_releveIndex.pompiste
                 };
                 console.log(releveIndex);
