@@ -14,12 +14,10 @@ const getDatePoste = () => {
     dd = new Date(datetime.setDate(datetime.getDate() - 1))
     var yesterday = dd.toISOString().slice(0, 10);
     var poste = '';
-    console.log(hour);
-    console.log(date);
     if ((hour >= 6) && (hour < 14)) { poste = 'P1'; }
     else if ((hour >= 14) && (hour < 22)) { poste = 'P2'; }
-    else if ((hour == 22) || (hour == 23)) { poste = 'P3'; }
-    else if ((hour >= 0) && (hour < 6)) { poste = 'P3'; date = yesterday; }
+    else if ((hour == 22) || (hour == 23) || (hour == 0)) { poste = 'P3'; }
+    else if ((hour > 0) && (hour < 6)) { poste = 'P3'; date = yesterday; }
     return [date, poste];
 }
 
@@ -29,7 +27,6 @@ router.post('/addReleveIndex', verifyToken, (req, res) => {
     let quantite = index.arrive - index.depart;
     let prix = index.prix;
     var PD = getDatePoste();
-    console.log(PD);
     recetteModel.findOne({ date: PD[0], poste: PD[1] }).exec()
         .then(recette => {
             if (!recette) {
