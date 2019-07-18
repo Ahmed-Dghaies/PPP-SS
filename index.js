@@ -91,7 +91,7 @@ app.use('/bonValeur', bonValeurRouter);
 app.use('/cheque', chequeRouter);
 
 //Credit router
-app.use('/credit', chequeRouter);
+app.use('/credit', creditRouter);
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
