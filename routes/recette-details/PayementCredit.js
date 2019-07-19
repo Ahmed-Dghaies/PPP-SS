@@ -11,7 +11,7 @@ router.post('/add', verifyToken, (req, res) => {
 
     let payementCredit = req.body.payementCredit;
 
-    let new_credit = new PayementCreditModel(credit);
+    let new_credit = new PayementCreditModel(payementCredit);
 
     new_credit.save().then(result => {
             res.status(201).json({
