@@ -21,7 +21,8 @@ const carburantRouter = require('./routes/carburant');
 const carteBonRouter = require('./routes/recette-details/CardBon');
 const bonValeurRouter = require('./routes/recette-details/BonValeur');
 const chequeRouter = require('./routes/recette-details/Cheque');
-const creditRouter = require('./routes/recette-details/Credit');
+const payementCreditRouter = require('./routes/recette-details/PayementCredit');
+const creditRouter = require('./routes/Credit');
 
 // setting server port 
 const PORT = process.env.PORT || 5000
@@ -92,6 +93,9 @@ app.use('/cheque', chequeRouter);
 
 //Credit router
 app.use('/credit', creditRouter);
+
+//Payement credit router
+app.use('/payementCredit', payementCreditRouter);
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
