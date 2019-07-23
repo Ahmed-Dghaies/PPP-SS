@@ -10,14 +10,14 @@ const router = express.Router();
 router.post('/add', verifyToken, (req, res) => {
 
     let pompiste = req.body.pompiste;
-
+    console.log(pompiste);
     let new_pompiste = new PompisteModel(pompiste);
 
     new_pompiste.save().then(result => {
-            res.status(201).json({
-                pompiste: result
-            });
-        })
+        res.status(201).json({
+            pompiste: result
+        });
+    })
         .catch(err => {
             res.status(500).json({
                 erreur: err
@@ -33,8 +33,8 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
     let id = req.params.id;
 
     PompisteModel.findOne({
-            _id: id
-        }).exec()
+        _id: id
+    }).exec()
         .then(pompiste => {
             if (!pompiste) {
                 res.status(404).json({
@@ -43,8 +43,8 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
             } else {
 
                 PompisteModel.deleteMany({
-                        _id: id
-                    }).exec()
+                    _id: id
+                }).exec()
                     .then(result => {
                         res.status(200).json({
                             message: 'Pompiste supprimé avec succés',
@@ -106,8 +106,8 @@ router.put('/update/:id', verifyToken, (req, res) => {
 
 
     PompisteModel.findOne({
-            _id: id
-        }).exec()
+        _id: id
+    }).exec()
         .then(doc => {
             if (!doc) {
                 res.status(404).json({
@@ -115,8 +115,8 @@ router.put('/update/:id', verifyToken, (req, res) => {
                 });
             } else {
                 PompisteModel.updateOne({
-                        _id: id
-                    }, pompiste).exec()
+                    _id: id
+                }, pompiste).exec()
                     .then(result => {
                         pompiste = {
                             _id: id,
