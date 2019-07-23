@@ -10,7 +10,6 @@ const router = express.Router();
 router.post('/add', verifyToken, (req, res) => {
 
     let pompiste = req.body.pompiste;
-    console.log(pompiste);
     let new_pompiste = new PompisteModel(pompiste);
 
     new_pompiste.save().then(result => {
