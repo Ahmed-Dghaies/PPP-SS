@@ -7,6 +7,8 @@ const cheque = Schema({
     bankName: {type: String, required: true},
     chequeValue: { type: Number, required: true},
     sessionId: {type: String, required: true},
+    rib: {type: String, required: true},
+    Agence: {type: String, required: true},
     state: { type: String, required: true},
     date: { type: String, required: true }
 });
