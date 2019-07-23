@@ -6,13 +6,13 @@ const bank = Schema({
     bankCode: { type: Number, required: true },
     agencyCode: { type: Number, required: true },
     agencyName: {type: String, required: true},
-    comptoir: { type: Number, required: true},
-    adress: { type: String, required: true },
-    tel: { type: Number, required: true },
-    responsibleName: { type: String, required: true },
-    dAgrem: { type: String, required: true },
-    dOuv: { type: String, required: true },
-    dFerm: { type: String, required: true }
+    comptoir: { type: Number },
+    adress: { type: String },
+    tel: { type: Number },
+    responsibleName: { type: String },
+    dAgrem: { type: String },
+    dOuv: { type: String },
+    dFerm: { type: String }
 });
 
 
