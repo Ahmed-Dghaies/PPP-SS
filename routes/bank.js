@@ -10,6 +10,7 @@ const router = express.Router();
 router.post('/add', verifyToken,  (req, res) => {
 
     let bank = req.body;
+    console.log(bank);
     let new_type = new BankModel(bank);
     
 
