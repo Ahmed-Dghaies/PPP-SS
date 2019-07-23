@@ -16,4 +16,4 @@ const bank = Schema({
 });
 
 
-module.exports = mongoose.model('bank', bank, 'Bank');
+module.exports = mongoose.model('bank', bank, 'Banks');
