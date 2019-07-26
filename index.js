@@ -26,6 +26,7 @@ const stegEtAutreRouter = require('./routes/recette-details/StegEtAutre');
 const creditRouter = require('./routes/Credit');
 const bankRouter = require('./routes/bank');
 const especeRouter = require('./routes/recette-details/Espece');
+const subventionPecheRouter = require('./routes/recette-details/SubventionPeche');
 
 // setting server port 
 const PORT = process.env.PORT || 5000
@@ -108,6 +109,9 @@ app.use('/bank', bankRouter);
 
 //Espece router
 app.use('/espece', especeRouter);
+
+//Espece router
+app.use('/subventionPeche', subventionPecheRouter);
 
 cron.schedule('0 6 * * *', () => {
     createSession(1);
