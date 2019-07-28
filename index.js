@@ -121,7 +121,7 @@ cron.schedule('0 6 * * *', () => {
         timezone: 'Africa/Algiers'
     });
 
-cron.schedule('0 14 * * *', () => {
+cron.schedule('47 8 * * *', () => {
     createSession(2);
     console.log('here 2')
 }, {

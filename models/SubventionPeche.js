@@ -10,6 +10,7 @@ const subventionPeche = Schema({
     literPrice: { type: Number, required: true },
     cardValue: { type: Number, required: true },
     sessionId: { type: String, required: true },
+    state: { type: String, required: true },
     date: { type: String, required: true }
 });
 
