@@ -16,7 +16,7 @@ router.post('/add/:numberOfCards', verifyToken, (req, res) => {
     for (i = 0; i < numberOfCards; i++) {
         let new_contreBon = new ContreBonModel(contreBon);
         console.log(new_contreBon);
-        /*new_contreBon.save().then(result => {
+        new_contreBon.save().then(result => {
             res.status(201).json({
                 contreBon: result
             });
@@ -26,7 +26,7 @@ router.post('/add/:numberOfCards', verifyToken, (req, res) => {
                     erreur: err
                 });
                 console.log(err);
-            });*/
+            });
             contreBon.cardNumber = contreBon.cardNumber + 1;
     }
 
