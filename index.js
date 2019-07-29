@@ -25,6 +25,7 @@ const payementCreditRouter = require('./routes/recette-details/PayementCredit');
 const stegEtAutreRouter = require('./routes/recette-details/StegEtAutre');
 const creditRouter = require('./routes/Credit');
 const bankRouter = require('./routes/bank');
+const contreBonRouter = require('./routes/contreBon');
 const especeRouter = require('./routes/recette-details/Espece');
 const subventionPecheRouter = require('./routes/recette-details/SubventionPeche');
 
@@ -106,6 +107,9 @@ app.use('/stegEtAutre', stegEtAutreRouter);
 
 //Bank router
 app.use('/bank', bankRouter);
+
+//Bank router
+app.use('/contreBon', contreBonRouter);
 
 //Espece router
 app.use('/espece', especeRouter);
