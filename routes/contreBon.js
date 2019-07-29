@@ -7,22 +7,28 @@ const router = express.Router();
 
 
 // add new contre Bon
-router.post('/add', verifyToken, (req, res) => {
+router.post('/add/:numberOfCards', verifyToken, (req, res) => {
 
+    let numberOfCards = req.params.numberOfCards;
     let contreBon = req.body.contreBon;
-    let new_contreBon = new ContreBonModel(contreBon);
 
-    new_contreBon.save().then(result => {
-        res.status(201).json({
-            contreBon: result
-        });
-    })
-        .catch(err => {
-            res.status(500).json({
-                erreur: err
+    var i;
+    for (i = 0; i < numberOfCards; i++) {
+        let new_contreBon = new ContreBonModel(contreBon);
+        console.log(new_contreBon);
+        /*new_contreBon.save().then(result => {
+            res.status(201).json({
+                contreBon: result
             });
-            console.log(err);
-        });
+        })
+            .catch(err => {
+                res.status(500).json({
+                    erreur: err
+                });
+                console.log(err);
+            });*/
+            contreBon.cardNumber = contreBon.cardNumber + 1;
+    }
 
 });
 
