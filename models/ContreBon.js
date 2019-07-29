@@ -5,8 +5,10 @@ const contreBon = Schema({
     cardNumber: { type: Number, required: true },
     cardValue: { type: Number },
     type: { type: String },
-    state: { type: String, required: true },
-    date: { type: String, required: true }
+    caisseState: { type: String, required: true },
+    clientState: { type: String, required: true },
+    date: { type: String, required: true },
+    color: {type: String, required: true }
 });
 
 
