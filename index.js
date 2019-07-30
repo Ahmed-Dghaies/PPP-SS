@@ -26,8 +26,8 @@ const stegEtAutreRouter = require('./routes/recette-details/StegEtAutre');
 const creditRouter = require('./routes/Credit');
 const bankRouter = require('./routes/bank');
 const contreBonRouter = require('./routes/contreBon');
-const contreBonCaisseRouter = require('./routes/recette-details/contreBonCaisse');
-const contreBonClientRouter = require('./routes/recette-details/contreBonClient');
+const contreBonCaisseRouter = require('./routes/recette-details/ContreBonCaisse');
+const contreBonClientRouter = require('./routes/recette-details/ContreBonClient');
 const especeRouter = require('./routes/recette-details/Espece');
 const subventionPecheRouter = require('./routes/recette-details/SubventionPeche');
 
