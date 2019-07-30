@@ -26,6 +26,8 @@ const stegEtAutreRouter = require('./routes/recette-details/StegEtAutre');
 const creditRouter = require('./routes/Credit');
 const bankRouter = require('./routes/bank');
 const contreBonRouter = require('./routes/contreBon');
+const contreBonCaisseRouter = require('./routes/recette-details/contreBonCaisse');
+const contreBonClientRouter = require('./routes/recette-details/contreBonClient');
 const especeRouter = require('./routes/recette-details/Espece');
 const subventionPecheRouter = require('./routes/recette-details/SubventionPeche');
 
@@ -108,13 +110,19 @@ app.use('/stegEtAutre', stegEtAutreRouter);
 //Bank router
 app.use('/bank', bankRouter);
 
-//Bank router
+//Contre bon router
 app.use('/contreBon', contreBonRouter);
+
+//Contre bon client router
+app.use('/contreBonClient', contreBonClientRouter);
+
+//Contre bon caisse router
+app.use('/contreBonCaisse', contreBonCaisseRouter);
 
 //Espece router
 app.use('/espece', especeRouter);
 
-//Espece router
+//Subvention peche router
 app.use('/subventionPeche', subventionPecheRouter);
 
 cron.schedule('0 6 * * *', () => {
